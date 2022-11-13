@@ -1,0 +1,37 @@
+{
+	"folders": {},
+	"connections": {
+		"microsoft-1846ce7848e-1fe4980eaee55c6f": {
+			"provider": "sqlserver",
+			"driver": "microsoft",
+			"name": "dt_analysis",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"virtual-model-id": "microsoft-18451b2cd7e-65aba08cdbf9a47b",
+			"configuration": {
+				"host": "localhost",
+				"port": "1457",
+				"database": "dt_analysis",
+				"url": "jdbc:sqlserver://;serverName\u003dlocalhost;port\u003d1457;databaseName\u003ddt_analysis",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-all-schemas@": "true"
+				},
+				"auth-model": "sqlserver_database",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

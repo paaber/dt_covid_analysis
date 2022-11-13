@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 create view covid_death_ as 
 SELECT iso_code, NULLIF(continent,'') as continent, location, convert(date,[date]) as date, population, total_cases, new_cases, new_cases_smoothed, 
 total_deaths, new_deaths, new_deaths_smoothed, total_cases_per_million, new_cases_per_million, new_cases_smoothed_per_million, 
@@ -31,9 +30,9 @@ order by 1,2
 --SELECT * from dt_analysis..covid_vacinations
 --order by 3,4
 
-SELECT  location,date,total_cases,total_deaths,population from covid_death_
+SELECT continent , location,date,total_cases,total_deaths,new_deaths ,population from covid_death_
 where continent is not null
-order by 1,2
+order by 1,2,3
 
 -- looking at total cases  vs total deaths
 --  shows likelihood of dying if covid is contacted in selected country. 
@@ -84,7 +83,6 @@ order by 1,2
 SELECT sum(new_cases) as total_cases,sum(new_deaths) as total_death,(cast(sum(new_deaths) as float) /sum(new_cases)) * 100 as death_percentage 
 from covid_death_ cd
 where continent is not null 
-and  location  like '%state%'
 order by 1,2
 
 select cd.continent,cd.location, cd.date,cd.population,NULLIF(cv.new_vaccinations,'') as new_vaccinations,
@@ -115,7 +113,14 @@ select *,(RollingSumOfVaccination * 1.0/Population) * 100 as vacinated_populatio
 
 --using table
 
+-- total death count by continent
+
+SELECT  cd.location  as Continent , SUM(cd.new_deaths) as TotalDeathCount from covid_death_ cd 
+WHERE cd.continent is null and cd.location not in ('International','Low income','European Union','High income', 'Lower middle income','World','Upper middle income')
+GROUP BY cd.location ORDER BY cd.location 
+
+SELECT  cd.continent As Continent, SUM(cd.new_deaths) AS TotalDeathCount  from covid_death_ cd 
+WHERE cd.continent  is not NULL 
+GROUP BY cd.continent ORDER  BY cd.continent 
 
 
-=======
->>>>>>> branch 'main' of https://github.com/paaber/dt_covid_analysis.git
